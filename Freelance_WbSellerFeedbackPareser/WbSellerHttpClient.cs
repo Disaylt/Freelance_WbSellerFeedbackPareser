@@ -10,19 +10,22 @@ namespace Freelance_WbSellerFeedbackPareser
 {
     internal class WbSellerHttpClient
     {
-        public HttpClientHandler HttpClientHandler { get; }
+        private const string _domain = "seller.wildberries.ru";
+        
         public WbSellerHttpClient(SellerSettingsModel sellerSettingsModel)
         {
             HttpClientHandler = new HttpClientHandler();
             HttpClientHandler.CookieContainer = CreateWbCookieContainer(sellerSettingsModel);
         }
 
+        public HttpClientHandler HttpClientHandler { get; }
+
         private CookieContainer CreateWbCookieContainer(SellerSettingsModel sellerSettingsModel)
         {
             CookieCollection cookieCollection = new CookieCollection
             {
-                new Cookie("WBToken", sellerSettingsModel.WbToken, "/", "seller.wildberries.ru"),
-                new Cookie("x-supplier-id", sellerSettingsModel.SupplierId, "/", "seller.wildberries.ru")
+                new Cookie("WBToken", sellerSettingsModel.WbToken, "/", _domain),
+                new Cookie("x-supplier-id", sellerSettingsModel.SupplierId, "/", _domain)
             };
             CookieContainer cookieContainer = new CookieContainer();
             cookieContainer.Add(cookieCollection);
