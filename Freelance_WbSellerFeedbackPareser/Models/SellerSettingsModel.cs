@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Freelance_WbSellerFeedbackPareser.Models
 {
-    internal class SettingsModel
+    internal class SellerSettingsModel
     {
         public string? SellerName { get; set; }
         public string? WbToken { get; set; }
