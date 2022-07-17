@@ -8,6 +8,6 @@ namespace Freelance_WbSellerFeedbackPareser
 {
     internal interface IRequestSender
     {
-        public T SendRequest<T>(HttpMethod method, string url);
+        public Task<string> SendRequestAsync(HttpMethod method, string url);
     }
 }
