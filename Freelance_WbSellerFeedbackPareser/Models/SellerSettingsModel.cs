@@ -8,7 +8,7 @@ namespace Freelance_WbSellerFeedbackPareser.Models
 {
     internal class SellerSettingsModel
     {
-        public string? SellerName { get; set; }
+        public string SellerName { get; set; } = "Unknown";
         public string? WbToken { get; set; }
         public string? SupplierId { get; set; }
     }
