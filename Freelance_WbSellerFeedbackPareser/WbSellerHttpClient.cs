@@ -12,10 +12,10 @@ namespace Freelance_WbSellerFeedbackPareser
     {
         private const string _domain = "seller.wildberries.ru";
         
-        public WbSellerHttpClient(SellerSettingsModel sellerSettingsModel)
+        public WbSellerHttpClient(SellerSettingsModel sellerSettings)
         {
             HttpClientHandler = new HttpClientHandler();
-            HttpClientHandler.CookieContainer = CreateWbCookieContainer(sellerSettingsModel);
+            HttpClientHandler.CookieContainer = CreateWbCookieContainer(sellerSettings);
         }
 
         public HttpClientHandler HttpClientHandler { get; }

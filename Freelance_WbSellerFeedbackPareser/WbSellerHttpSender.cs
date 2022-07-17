@@ -10,7 +10,7 @@ namespace Freelance_WbSellerFeedbackPareser
 {
     internal class WbSellerHttpSender : WbSellerHttpClient, IRequestSender
     {
-        public WbSellerHttpSender(SellerSettingsModel sellerSettingsModel) : base(sellerSettingsModel)
+        public WbSellerHttpSender(SellerSettingsModel sellerSettings) : base(sellerSettings)
         {
 
         }
