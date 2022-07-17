@@ -6,5 +6,4 @@ foreach(var seller in configuration.SellerSettings)
 {
     WbFeedbackReader feedbackReader = new WbFeedbackReader(seller);
     var feedbacks = feedbackReader.ReadAllFeedbacks();
-    Console.WriteLine(feedbacks.Count);
 }
