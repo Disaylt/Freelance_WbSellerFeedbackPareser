@@ -20,14 +20,13 @@ namespace Freelance_WbSellerFeedbackPareser
         {
             foreach (FeedbackModel feedback in feedbacks)
             {
-                DateTime createDate = DateTime.Parse(feedback.TextCreateDate).Date;
                 object[] cells =
                 {
                     feedback.Id,
                     feedback.Status,
-                    createDate,
+                    DateTime.Parse(feedback.TextCreateDate).Date,
                     feedback.Title,
-                    feedback.ParentId ?? 0,
+                    feedback.ParentId?.ToString() ?? string.Empty,
                     feedback.AppealText,
                     feedback.Answer
                 };
@@ -41,7 +40,7 @@ namespace Freelance_WbSellerFeedbackPareser
             Columns.Add("Статус", typeof(string));
             Columns.Add("Дата создания", typeof(DateTime));
             Columns.Add("Тема", typeof(string));
-            Columns.Add("Связанное обращение Id", typeof(int));
+            Columns.Add("Связанное обращение Id", typeof(string));
             Columns.Add("Описание", typeof(string));
             Columns.Add("Ответ поддержки", typeof(string));
         }
