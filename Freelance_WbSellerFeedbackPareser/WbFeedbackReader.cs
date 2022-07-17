@@ -39,7 +39,7 @@ namespace Freelance_WbSellerFeedbackPareser
 
         private string GetAppealsContent(int skip)
         {
-            string url = $"https://seller.wildberries.ru/ns/suppliers-proxy/callcenter/suppliers-appeals-api/v1/suppliers/appeals?destination=desc&limit=10&offset={skip}&sort=createDate";
+            string url = $"https://seller.wildberries.ru/ns/suppliers-proxy/callcenter/suppliers-appeals-api/v1/suppliers/appeals?destination=desc&limit={_take}&offset={skip}&sort=createDate";
             string content = _requestSender.SendRequestAsync(HttpMethod.Get, url).Result;
             return content;
         }

@@ -1,2 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Freelance_WbSellerFeedbackPareser;
+using Freelance_WbSellerFeedbackPareser.Models;
+
+Configuration configuration = Configuration.GetInstance();
+foreach(var seller in configuration.SellerSettings)
+{
+    WbFeedbackReader feedbackReader = new WbFeedbackReader(seller);
+    var feedbacks = feedbackReader.ReadAllFeedbacks();
+    Console.WriteLine(feedbacks.Count);
+}

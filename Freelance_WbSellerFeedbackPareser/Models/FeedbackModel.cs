@@ -13,7 +13,7 @@ namespace Freelance_WbSellerFeedbackPareser.Models
         public int Id { get; set; }
 
         [JsonProperty("parentComId")]
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; } = "Неизвестно";
