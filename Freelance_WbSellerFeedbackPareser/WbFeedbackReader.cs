@@ -34,6 +34,7 @@ namespace Freelance_WbSellerFeedbackPareser
                 allFeedbacks.AddRange(feedbacks);
                 skip += _take;
             }
+            Console.WriteLine($"Получил {totalFeedback} сообщений");
             return allFeedbacks;
         }
 

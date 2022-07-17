@@ -18,19 +18,22 @@ namespace Freelance_WbSellerFeedbackPareser
         {
             _workbook = new XLWorkbook();
             SetWorkbookSettings();
+            Console.WriteLine("Создал пустой Excel");
         }
 
         public void WriteFeedbacksToNewList(string listName, List<FeedbackModel> feedbacks)
         {
             FeedbackDataTable feedbackDataTable = new FeedbackDataTable(feedbacks);
-            string name = CreateUniqueListName(listName);
-            IXLWorksheet worksheet =  _workbook.AddWorksheet(feedbackDataTable, name);
+            string verifiedListName = CreateUniqueListName(listName);
+            IXLWorksheet worksheet =  _workbook.AddWorksheet(feedbackDataTable, verifiedListName);
             SetDefaultWorksheetWidht(worksheet);
+            Console.WriteLine($"Создан лист {verifiedListName} с сообщениями");
         }
 
         public void Save()
         {
             _workbook.SaveAs($@"files\{_name}");
+            Console.WriteLine("Excel сохранен");
         }
 
         private string CreateUniqueListName(string listName)

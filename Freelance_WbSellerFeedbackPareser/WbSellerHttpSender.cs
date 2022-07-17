@@ -31,6 +31,7 @@ namespace Freelance_WbSellerFeedbackPareser
                 request.Headers.TryAddWithoutValidation("Connection", "keep-alive");
 
                 var response = await httpClient.SendAsync(request);
+                Console.WriteLine($"Отправлен запрос на получение сообщений:\r\n {url}");
                 string responseContent = await response.Content.ReadAsStringAsync();
                 return responseContent;
             }
