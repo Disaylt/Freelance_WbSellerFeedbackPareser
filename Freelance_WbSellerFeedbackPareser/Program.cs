@@ -15,7 +15,9 @@ try
         }
         catch (Exception ex)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"Произошла ошибка при работае с селлером - {seller.SellerName}");
+            Console.ResetColor();
             Console.WriteLine(ex.Message);
         }
     }
