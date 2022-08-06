@@ -31,25 +31,32 @@ namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
 
         private string CreateUniqueListName(string listName)
         {
-            string newListName = listName;
-            if (_workbook.TryGetWorksheet(listName, out var xLWorksheet))
+            if(!CheckExistsWorksheetName(listName))
             {
-                int numberName = CreateUniqueListName(listName, 1);
-                newListName += numberName;
+                return listName;
             }
-            return newListName;
+
+            string uniqueName = listName;
+            for (int numName = 1; numName < int.MaxValue; numName++)
+            {
+                if (!CheckExistsWorksheetName($"{uniqueName}{numName}"))
+                {
+                    return listName;
+                }
+            }
+            throw new Exception("Error create worksheet name.");
         }
 
-        private int CreateUniqueListName(string listName, int number)
+        private bool CheckExistsWorksheetName(string name)
         {
-            string currentListName = $"{listName}{number}";
-            int newNumber = number;
-            if (_workbook.TryGetWorksheet(currentListName, out var xLWorksheet))
+            if (_workbook.Worksheets.Any(x => x.Name == name))
             {
-                newNumber += 1;
-                newNumber = CreateUniqueListName(listName, newNumber);
+                return true;
             }
-            return newNumber;
+            else
+            {
+                return false;
+            }
         }
 
         private void SetDefaultWorksheetWidht(IXLWorksheet worksheet)
