@@ -16,41 +16,20 @@ namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
         {
             List<TotalAppealModel> allFeedbacks = new List<TotalAppealModel>();
             string firstAppealsContent = _wbAppealsManager.GetAppealsContent(0, _take);
-            int totalFeedback = ReadTotalFeedback(firstAppealsContent);
-            List<TotalAppealModel> firstFeedbacks = ConvertToFeedbackList(firstAppealsContent);
+            int totalFeedback = WbAppealsJsonConverter.ReadTotalFeedback(firstAppealsContent);
+            List<TotalAppealModel> firstFeedbacks = WbAppealsJsonConverter.ConvertToFeedbackList(firstAppealsContent);
             allFeedbacks.AddRange(firstFeedbacks);
 
             int skip = _take;
             while(totalFeedback > skip)
             {
                 string appealsContent = _wbAppealsManager.GetAppealsContent(skip, _take);
-                List<TotalAppealModel> feedbacks = ConvertToFeedbackList(appealsContent);
+                List<TotalAppealModel> feedbacks = WbAppealsJsonConverter.ConvertToFeedbackList(appealsContent);
                 allFeedbacks.AddRange(feedbacks);
                 skip += _take;
             }
             Console.WriteLine($"Получил {totalFeedback} сообщений");
             return allFeedbacks;
-        }
-
-        private List<TotalAppealModel> ConvertToFeedbackList(string content)
-        {
-            List<TotalAppealModel> feedbacks = JToken.Parse(content)["data"]?["rows"]?
-                .ToObject<List<TotalAppealModel>>() ?? new List<TotalAppealModel>();
-            return feedbacks;
-        }
-
-        private int ReadTotalFeedback(string content)
-        {
-            int? total = JToken.Parse(content)?["data"]?
-                .Value<int?>("totalCount");
-            if(total.HasValue)
-            {
-                return total.Value;
-            }
-            else
-            {
-                return 0;
-            }
         }
     }
 }
