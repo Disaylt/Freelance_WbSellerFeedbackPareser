@@ -1,4 +1,4 @@
-﻿namespace Freelance_WbSellerFeedbackPareser
+﻿namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
 {
     internal class WbExcelAppealBuilder
     {

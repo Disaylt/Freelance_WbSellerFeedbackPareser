@@ -1,42 +1,35 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace Freelance_WbSellerFeedbackPareser
+namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
 {
     internal class WbAppealsReader
     {
-        private readonly IRequestSender _requestSender;
+        private readonly WbAppealsManager _wbAppealsManager;
         private const int _take = 100;
 
         public WbAppealsReader(IRequestSender requestSender)
         {
-            _requestSender = requestSender;
+            _wbAppealsManager = new WbAppealsManager(requestSender);
         }
 
         public List<TotalAppealModel> ReadAllFeedbacks()
         {
             List<TotalAppealModel> allFeedbacks = new List<TotalAppealModel>();
-            string firstAppealsContent = GetAppealsContent(0);
-            int totalFeedback = GetTotalFeedback(firstAppealsContent);
+            string firstAppealsContent = _wbAppealsManager.GetAppealsContent(0, _take);
+            int totalFeedback = ReadTotalFeedback(firstAppealsContent);
             List<TotalAppealModel> firstFeedbacks = ConvertToFeedbackList(firstAppealsContent);
             allFeedbacks.AddRange(firstFeedbacks);
 
             int skip = _take;
             while(totalFeedback > skip)
             {
-                string appealsContent = GetAppealsContent(skip);
+                string appealsContent = _wbAppealsManager.GetAppealsContent(skip, _take);
                 List<TotalAppealModel> feedbacks = ConvertToFeedbackList(appealsContent);
                 allFeedbacks.AddRange(feedbacks);
                 skip += _take;
             }
             Console.WriteLine($"Получил {totalFeedback} сообщений");
             return allFeedbacks;
-        }
-
-        private string GetAppealsContent(int skip)
-        {
-            string url = $"https://seller.wildberries.ru/ns/suppliers-proxy/callcenter/suppliers-appeals-api/v1/suppliers/appeals?destination=desc&limit={_take}&offset={skip}&sort=createDate";
-            string content = _requestSender.SendRequestAsync(HttpMethod.Get, url).Result;
-            return content;
         }
 
         private List<TotalAppealModel> ConvertToFeedbackList(string content)
@@ -46,7 +39,7 @@ namespace Freelance_WbSellerFeedbackPareser
             return feedbacks;
         }
 
-        private int GetTotalFeedback(string content)
+        private int ReadTotalFeedback(string content)
         {
             int? total = JToken.Parse(content)?["data"]?
                 .Value<int?>("totalCount");
