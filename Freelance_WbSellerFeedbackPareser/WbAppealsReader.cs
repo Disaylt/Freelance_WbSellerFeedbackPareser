@@ -8,29 +8,29 @@ using System.Threading.Tasks;
 
 namespace Freelance_WbSellerFeedbackPareser
 {
-    internal class WbFeedbackReader
+    internal class WbAppealsReader
     {
         private readonly IRequestSender _requestSender;
         private const int _take = 100;
 
-        public WbFeedbackReader(SellerSettingsModel sellerSettings)
+        public WbAppealsReader(SellerSettingsModel sellerSettings)
         {
             _requestSender = new WbSellerHttpSender(sellerSettings);
         }
 
-        public List<FeedbackModel> ReadAllFeedbacks()
+        public List<AppealModel> ReadAllFeedbacks()
         {
-            List<FeedbackModel> allFeedbacks = new List<FeedbackModel>();
+            List<AppealModel> allFeedbacks = new List<AppealModel>();
             string firstAppealsContent = GetAppealsContent(0);
             int totalFeedback = GetTotalFeedback(firstAppealsContent);
-            List<FeedbackModel> firstFeedbacks = ConvertToFeedbackList(firstAppealsContent);
+            List<AppealModel> firstFeedbacks = ConvertToFeedbackList(firstAppealsContent);
             allFeedbacks.AddRange(firstFeedbacks);
 
             int skip = _take;
             while(totalFeedback > skip)
             {
                 string appealsContent = GetAppealsContent(skip);
-                List<FeedbackModel> feedbacks = ConvertToFeedbackList(appealsContent);
+                List<AppealModel> feedbacks = ConvertToFeedbackList(appealsContent);
                 allFeedbacks.AddRange(feedbacks);
                 skip += _take;
             }
@@ -45,10 +45,10 @@ namespace Freelance_WbSellerFeedbackPareser
             return content;
         }
 
-        private List<FeedbackModel> ConvertToFeedbackList(string content)
+        private List<AppealModel> ConvertToFeedbackList(string content)
         {
-            List<FeedbackModel> feedbacks = JToken.Parse(content)["data"]?["rows"]?
-                .ToObject<List<FeedbackModel>>() ?? new List<FeedbackModel>();
+            List<AppealModel> feedbacks = JToken.Parse(content)["data"]?["rows"]?
+                .ToObject<List<AppealModel>>() ?? new List<AppealModel>();
             return feedbacks;
         }
 

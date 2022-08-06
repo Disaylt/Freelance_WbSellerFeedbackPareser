@@ -10,15 +10,15 @@ namespace Freelance_WbSellerFeedbackPareser
 {
     internal class FeedbackDataTable : DataTable
     {
-        public FeedbackDataTable(List<FeedbackModel> feedbacks)
+        public FeedbackDataTable(List<AppealModel> feedbacks)
         {
             AddColumns();
             FillFeedbacks(feedbacks);
         }
 
-        private void FillFeedbacks(List<FeedbackModel> feedbacks)
+        private void FillFeedbacks(List<AppealModel> feedbacks)
         {
-            foreach (FeedbackModel feedback in feedbacks)
+            foreach (AppealModel feedback in feedbacks)
             {
                 object[] cells =
                 {

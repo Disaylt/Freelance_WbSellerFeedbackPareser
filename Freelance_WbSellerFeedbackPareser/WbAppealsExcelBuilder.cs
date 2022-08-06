@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace Freelance_WbSellerFeedbackPareser
 {
-    internal class WbFeedbacksExcelBuilder
+    internal class WbAppealsExcelBuilder
     {
         private const string _name = "feedbacks.xlsx";
         private readonly XLWorkbook _workbook;
 
-        public WbFeedbacksExcelBuilder()
+        public WbAppealsExcelBuilder()
         {
             _workbook = new XLWorkbook();
             SetWorkbookSettings();
             Console.WriteLine("Создал пустой Excel");
         }
 
-        public void WriteFeedbacksToNewList(string listName, List<FeedbackModel> feedbacks)
+        public void WriteFeedbacksToNewList(string listName, List<AppealModel> feedbacks)
         {
             FeedbackDataTable feedbackDataTable = new FeedbackDataTable(feedbacks);
             string verifiedListName = CreateUniqueListName(listName);

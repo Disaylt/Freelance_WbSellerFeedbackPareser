@@ -4,12 +4,12 @@ using Freelance_WbSellerFeedbackPareser.Models;
 try
 {
     Configuration configuration = Configuration.GetInstance();
-    WbFeedbacksExcelBuilder excelBuilder = new WbFeedbacksExcelBuilder();
+    WbAppealsExcelBuilder excelBuilder = new WbAppealsExcelBuilder();
     foreach (var seller in configuration.SellerSettings)
     {
         try
         {
-            WbFeedbackReader feedbackReader = new WbFeedbackReader(seller);
+            WbAppealsReader feedbackReader = new WbAppealsReader(seller);
             var feedbacks = feedbackReader.ReadAllFeedbacks();
             excelBuilder.WriteFeedbacksToNewList(seller.SellerName, feedbacks);
         }
