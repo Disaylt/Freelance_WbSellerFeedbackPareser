@@ -23,7 +23,7 @@ namespace Freelance_WbSellerFeedbackPareser
 
         public void WriteFeedbacksToNewList(string listName, List<AppealModel> feedbacks)
         {
-            FeedbackDataTable feedbackDataTable = new FeedbackDataTable(feedbacks);
+            AppealsDataTable feedbackDataTable = new FeedbackDataTable(feedbacks);
             string verifiedListName = CreateUniqueListName(listName);
             IXLWorksheet worksheet =  _workbook.AddWorksheet(feedbackDataTable, verifiedListName);
             SetDefaultWorksheetWidht(worksheet);

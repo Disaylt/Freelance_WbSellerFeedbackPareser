@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace Freelance_WbSellerFeedbackPareser
 {
-    internal class FeedbackDataTable : DataTable
+    internal class AppealsDataTable : DataTable
     {
-        public FeedbackDataTable(List<AppealModel> feedbacks)
+        public AppealsDataTable(List<ExcelAppealModel> feedbacks)
         {
             AddColumns();
             FillFeedbacks(feedbacks);
         }
 
-        private void FillFeedbacks(List<AppealModel> feedbacks)
+        private void FillFeedbacks(List<ExcelAppealModel> feedbacks)
         {
-            foreach (AppealModel feedback in feedbacks)
+            foreach (ExcelAppealModel feedback in feedbacks)
             {
                 object[] cells =
                 {
                     feedback.Id,
+                    feedback.ProductId,
                     feedback.Status,
                     DateTime.Parse(feedback.TextCreateDate).Date,
                     feedback.Title,
@@ -37,6 +38,7 @@ namespace Freelance_WbSellerFeedbackPareser
         private void AddColumns()
         {
             Columns.Add("Id обращения", typeof(int));
+            Columns.Add("Номенклатура", typeof(string));
             Columns.Add("Статус", typeof(string));
             Columns.Add("Дата создания", typeof(DateTime));
             Columns.Add("Тема", typeof(string));
