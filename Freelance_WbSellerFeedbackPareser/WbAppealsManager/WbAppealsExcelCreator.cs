@@ -16,7 +16,7 @@ namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
 
         public void WriteFeedbacksToNewList(string listName, List<ExcelAppealModel> feedbacks)
         {
-            AppealsDataTable feedbackDataTable = new AppealsDataTable(feedbacks);
+            AppealsDataTable feedbackDataTable = new(feedbacks);
             string verifiedListName = CreateUniqueListName(listName);
             IXLWorksheet worksheet =  _workbook.AddWorksheet(feedbackDataTable, verifiedListName);
             SetDefaultWorksheetWidht(worksheet);
@@ -59,7 +59,7 @@ namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
             }
         }
 
-        private void SetDefaultWorksheetWidht(IXLWorksheet worksheet)
+        private static void SetDefaultWorksheetWidht(IXLWorksheet worksheet)
         {
             worksheet.Column(1).Width = 15f;
             worksheet.Column(2).Width = 15f;

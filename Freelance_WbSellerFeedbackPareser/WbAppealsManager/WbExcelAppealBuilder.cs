@@ -10,8 +10,8 @@
 
         public List<ExcelAppealModel> CreateExcelAppeals(IRequestSender requestSender)
         {
-            WbAppealReader wbAppealReader = new WbAppealReader(requestSender);
-            List<ExcelAppealModel> excelAppeals = new List<ExcelAppealModel>();
+            WbAppealReader wbAppealReader = new(requestSender);
+            List<ExcelAppealModel> excelAppeals = new();
             foreach(var totalApeal in _totalAppeals)
             {
                 string productId = wbAppealReader.GetProductId(totalApeal.Id);
@@ -21,9 +21,9 @@
             return excelAppeals;
         }
 
-        private ExcelAppealModel CreateExcelAppeal(TotalAppealModel totalAppeal, string productId)
+        private static ExcelAppealModel CreateExcelAppeal(TotalAppealModel totalAppeal, string productId)
         {
-            ExcelAppealModel excelAppeal = new ExcelAppealModel
+            ExcelAppealModel excelAppeal = new()
             {
                 Answer = totalAppeal.Answer,
                 AppealText = totalAppeal.AppealText,

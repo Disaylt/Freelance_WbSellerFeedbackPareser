@@ -8,8 +8,10 @@ namespace Freelance_WbSellerFeedbackPareser.Http
         
         public WbSellerHttpClient(SellerSettingsModel sellerSettings)
         {
-            HttpClientHandler = new HttpClientHandler();
-            HttpClientHandler.CookieContainer = CreateWbCookieContainer(sellerSettings);
+            HttpClientHandler = new HttpClientHandler
+            {
+                CookieContainer = CreateWbCookieContainer(sellerSettings)
+            };
         }
 
         public HttpClientHandler HttpClientHandler { get; }
@@ -27,14 +29,14 @@ namespace Freelance_WbSellerFeedbackPareser.Http
             request.Headers.TryAddWithoutValidation("Connection", "keep-alive");
         }
 
-        private CookieContainer CreateWbCookieContainer(SellerSettingsModel sellerSettingsModel)
+        private static CookieContainer CreateWbCookieContainer(SellerSettingsModel sellerSettingsModel)
         {
-            CookieCollection cookieCollection = new CookieCollection
+            CookieCollection cookieCollection = new()
             {
                 new Cookie("WBToken", sellerSettingsModel.WbToken, "/", _domain),
                 new Cookie("x-supplier-id", sellerSettingsModel.SupplierId, "/", _domain)
             };
-            CookieContainer cookieContainer = new CookieContainer();
+            CookieContainer cookieContainer = new();
             cookieContainer.Add(cookieCollection);
             return cookieContainer;
         }

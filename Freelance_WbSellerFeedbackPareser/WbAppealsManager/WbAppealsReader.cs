@@ -14,7 +14,7 @@ namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
 
         public List<TotalAppealModel> ReadAllFeedbacks()
         {
-            List<TotalAppealModel> allFeedbacks = new List<TotalAppealModel>();
+            List<TotalAppealModel> allFeedbacks = new();
             string firstAppealsContent = _wbAppealsManager.GetAppealsContent(0, _take);
             int totalFeedback = WbAppealsJsonConverter.ReadTotalFeedback(firstAppealsContent);
             List<TotalAppealModel> firstFeedbacks = WbAppealsJsonConverter.ConvertToFeedbackList(firstAppealsContent);

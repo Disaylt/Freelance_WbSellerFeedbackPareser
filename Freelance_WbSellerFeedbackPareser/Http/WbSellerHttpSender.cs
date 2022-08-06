@@ -10,14 +10,12 @@
         public async Task<string> SendRequestAsync(HttpMethod method, string url)
         {
             var httpClient = new HttpClient(HttpClientHandler);
-            using(var request = new HttpRequestMessage(method, url))
-            {
-                SetHeaders(request);
-                var response = await httpClient.SendAsync(request);
-                Console.WriteLine($"Отправлен запрос:\r\n {url}");
-                string responseContent = await response.Content.ReadAsStringAsync();
-                return responseContent;
-            }
+            using var request = new HttpRequestMessage(method, url);
+            SetHeaders(request);
+            var response = await httpClient.SendAsync(request);
+            Console.WriteLine($"Отправлен запрос:\r\n {url}");
+            string responseContent = await response.Content.ReadAsStringAsync();
+            return responseContent;
         }
     }
 }
