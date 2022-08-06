@@ -22,7 +22,7 @@ namespace Freelance_WbSellerFeedbackPareser
             {
                 SetHeaders(request);
                 var response = await httpClient.SendAsync(request);
-                Console.WriteLine($"Отправлен запрос на получение сообщений:\r\n {url}");
+                Console.WriteLine($"Отправлен запрос:\r\n {url}");
                 string responseContent = await response.Content.ReadAsStringAsync();
                 return responseContent;
             }

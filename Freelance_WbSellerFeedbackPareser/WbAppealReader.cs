@@ -21,7 +21,7 @@ namespace Freelance_WbSellerFeedbackPareser
             string content = ReadAppeal(appealId);
             List<AppealAttributeModel> appealAttributes = ConvertToAttributes(content);
             AppealAttributeModel? productData = appealAttributes
-                .FirstOrDefault(x => x.Name == "Номенклатура");
+                .FirstOrDefault(x => x.Name == "Номенклатура" || x.Name == "Артикул  товара");
             if(productData == null)
             {
                 return string.Empty;
@@ -36,7 +36,7 @@ namespace Freelance_WbSellerFeedbackPareser
         {
             string url = $"https://seller.wildberries.ru/ns/suppliers-proxy/callcenter/suppliers-appeals-api/v1/suppliers/users/appeals/{appealId}";
             var content = _requestSender.SendRequestAsync(HttpMethod.Get, url).Result;
-            Thread.Sleep(200);
+            Thread.Sleep(400);
             return content;
         }
 

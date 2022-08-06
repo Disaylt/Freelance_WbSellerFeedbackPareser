@@ -62,12 +62,13 @@ namespace Freelance_WbSellerFeedbackPareser
         private void SetDefaultWorksheetWidht(IXLWorksheet worksheet)
         {
             worksheet.Column(1).Width = 15f;
-            worksheet.Column(2).Width = 10f;
-            worksheet.Column(3).Width = 15f;
-            worksheet.Column(4).Width = 30f;
-            worksheet.Column(5).Width = 15f;
-            worksheet.Column(6).Width = 50f;
+            worksheet.Column(2).Width = 15f;
+            worksheet.Column(3).Width = 10f;
+            worksheet.Column(4).Width = 15f;
+            worksheet.Column(5).Width = 30f;
+            worksheet.Column(6).Width = 15f;
             worksheet.Column(7).Width = 50f;
+            worksheet.Column(8).Width = 50f;
 
 
         }
