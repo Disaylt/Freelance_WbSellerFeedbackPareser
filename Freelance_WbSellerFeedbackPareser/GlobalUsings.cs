@@ -1,0 +1,3 @@
+﻿global using Freelance_WbSellerFeedbackPareser.Http;
+global using Freelance_WbSellerFeedbackPareser;
+global using Freelance_WbSellerFeedbackPareser.Models;

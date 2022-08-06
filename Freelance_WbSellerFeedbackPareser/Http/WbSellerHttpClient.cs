@@ -1,12 +1,6 @@
-﻿using Freelance_WbSellerFeedbackPareser.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 
-namespace Freelance_WbSellerFeedbackPareser
+namespace Freelance_WbSellerFeedbackPareser.Http
 {
     internal class WbSellerHttpClient
     {

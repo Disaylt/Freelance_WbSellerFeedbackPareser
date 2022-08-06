@@ -1,7 +1,4 @@
-﻿using Freelance_WbSellerFeedbackPareser;
-using Freelance_WbSellerFeedbackPareser.Models;
-
-try
+﻿try
 {
     Configuration configuration = Configuration.GetInstance();
     WbAppealsExcelCreator excelBuilder = new WbAppealsExcelCreator();
