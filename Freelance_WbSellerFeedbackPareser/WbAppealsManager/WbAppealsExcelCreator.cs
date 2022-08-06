@@ -69,8 +69,6 @@ namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
             worksheet.Column(6).Width = 15f;
             worksheet.Column(7).Width = 50f;
             worksheet.Column(8).Width = 50f;
-
-
         }
 
         private void SetWorkbookSettings()

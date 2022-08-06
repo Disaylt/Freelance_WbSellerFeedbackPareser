@@ -13,7 +13,7 @@ namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
         public string GetProductId(int appealId)
         {
             string content = _wbAppealManager.ReadAppeal(appealId);
-            List<AppealAttributeModel> appealAttributes = ConvertToAttributes(content);
+            List<AppealAttributeModel> appealAttributes = WbAppealJsonConverter.ConvertToAttributes(content);
             AppealAttributeModel? productData = appealAttributes
                 .FirstOrDefault(x => x.Name == "Номенклатура" || x.Name == "Артикул  товара");
             if(productData == null)
@@ -24,13 +24,6 @@ namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
             {
                 return productData.Value;
             }
-        }
-
-        private List<AppealAttributeModel> ConvertToAttributes(string content)
-        {
-            List<AppealAttributeModel> feedbacks = JToken.Parse(content)["data"]?[0]?["attr"]?
-                .ToObject<List<AppealAttributeModel>>() ?? new List<AppealAttributeModel>();
-            return feedbacks;
         }
     }
 }
