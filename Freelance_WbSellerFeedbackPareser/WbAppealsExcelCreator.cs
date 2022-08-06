@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Freelance_WbSellerFeedbackPareser
 {
-    internal class WbAppealsExcelBuilder
+    internal class WbAppealsExcelCreator
     {
         private const string _name = "feedbacks.xlsx";
         private readonly XLWorkbook _workbook;
 
-        public WbAppealsExcelBuilder()
+        public WbAppealsExcelCreator()
         {
             _workbook = new XLWorkbook();
             SetWorkbookSettings();
