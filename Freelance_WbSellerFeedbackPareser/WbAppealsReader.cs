@@ -18,19 +18,19 @@ namespace Freelance_WbSellerFeedbackPareser
             _requestSender = new WbSellerHttpSender(sellerSettings);
         }
 
-        public List<AppealModel> ReadAllFeedbacks()
+        public List<TotalAppealModel> ReadAllFeedbacks()
         {
-            List<AppealModel> allFeedbacks = new List<AppealModel>();
+            List<TotalAppealModel> allFeedbacks = new List<TotalAppealModel>();
             string firstAppealsContent = GetAppealsContent(0);
             int totalFeedback = GetTotalFeedback(firstAppealsContent);
-            List<AppealModel> firstFeedbacks = ConvertToFeedbackList(firstAppealsContent);
+            List<TotalAppealModel> firstFeedbacks = ConvertToFeedbackList(firstAppealsContent);
             allFeedbacks.AddRange(firstFeedbacks);
 
             int skip = _take;
             while(totalFeedback > skip)
             {
                 string appealsContent = GetAppealsContent(skip);
-                List<AppealModel> feedbacks = ConvertToFeedbackList(appealsContent);
+                List<TotalAppealModel> feedbacks = ConvertToFeedbackList(appealsContent);
                 allFeedbacks.AddRange(feedbacks);
                 skip += _take;
             }
@@ -45,10 +45,10 @@ namespace Freelance_WbSellerFeedbackPareser
             return content;
         }
 
-        private List<AppealModel> ConvertToFeedbackList(string content)
+        private List<TotalAppealModel> ConvertToFeedbackList(string content)
         {
-            List<AppealModel> feedbacks = JToken.Parse(content)["data"]?["rows"]?
-                .ToObject<List<AppealModel>>() ?? new List<AppealModel>();
+            List<TotalAppealModel> feedbacks = JToken.Parse(content)["data"]?["rows"]?
+                .ToObject<List<TotalAppealModel>>() ?? new List<TotalAppealModel>();
             return feedbacks;
         }
 

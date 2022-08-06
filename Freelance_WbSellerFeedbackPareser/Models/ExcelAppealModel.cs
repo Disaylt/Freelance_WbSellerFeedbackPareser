@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Freelance_WbSellerFeedbackPareser.Models
 {
-    internal class ExcelAppealModel : AppealModel
+    internal class ExcelAppealModel : TotalAppealModel
     {
         public string ProductId { get; set; } = string.Empty;
     }

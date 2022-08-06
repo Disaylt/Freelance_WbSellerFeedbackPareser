@@ -21,9 +21,9 @@ namespace Freelance_WbSellerFeedbackPareser
             Console.WriteLine("Создал пустой Excel");
         }
 
-        public void WriteFeedbacksToNewList(string listName, List<AppealModel> feedbacks)
+        public void WriteFeedbacksToNewList(string listName, List<ExcelAppealModel> feedbacks)
         {
-            AppealsDataTable feedbackDataTable = new FeedbackDataTable(feedbacks);
+            AppealsDataTable feedbackDataTable = new AppealsDataTable(feedbacks);
             string verifiedListName = CreateUniqueListName(listName);
             IXLWorksheet worksheet =  _workbook.AddWorksheet(feedbackDataTable, verifiedListName);
             SetDefaultWorksheetWidht(worksheet);
