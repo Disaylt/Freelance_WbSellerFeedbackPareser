@@ -1,17 +1,17 @@
-﻿using Freelance_WbSellerFeedbackPareser;
-using Freelance_WbSellerFeedbackPareser.Models;
-
-try
+﻿try
 {
     Configuration configuration = Configuration.GetInstance();
-    WbFeedbacksExcelBuilder excelBuilder = new WbFeedbacksExcelBuilder();
+    WbAppealsExcelCreator excelBuilder = new();
     foreach (var seller in configuration.SellerSettings)
     {
         try
         {
-            WbFeedbackReader feedbackReader = new WbFeedbackReader(seller);
-            var feedbacks = feedbackReader.ReadAllFeedbacks();
-            excelBuilder.WriteFeedbacksToNewList(seller.SellerName, feedbacks);
+            IRequestSender requestSender = new WbSellerHttpSender(seller);
+            WbAppealsReader appealsReader = new(requestSender);
+            var appeals = appealsReader.ReadAllFeedbacks();
+            WbExcelAppealBuilder wbExcelAppealBuilder = new(appeals);
+            var excelAppeals = wbExcelAppealBuilder.CreateExcelAppeals(requestSender);
+            excelBuilder.WriteFeedbacksToNewList(seller.SellerName, excelAppeals);
         }
         catch (Exception ex)
         {

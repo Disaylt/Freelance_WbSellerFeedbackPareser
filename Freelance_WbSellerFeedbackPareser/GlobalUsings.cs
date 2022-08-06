@@ -1,0 +1,4 @@
+﻿global using Freelance_WbSellerFeedbackPareser.WbAppealsManager;
+global using Freelance_WbSellerFeedbackPareser.Models;
+global using Freelance_WbSellerFeedbackPareser.Http;
+global using Freelance_WbSellerFeedbackPareser;

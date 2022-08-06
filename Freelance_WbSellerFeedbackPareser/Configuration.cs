@@ -29,7 +29,7 @@ namespace Freelance_WbSellerFeedbackPareser
             return _instance;
         }
 
-        private List<SellerSettingsModel> LoadSellerSettings()
+        private static List<SellerSettingsModel> LoadSellerSettings()
         {
             string settingsContent = File.ReadAllText(_settingsFilePath);
             List<SellerSettingsModel> settings = JToken.Parse(settingsContent)

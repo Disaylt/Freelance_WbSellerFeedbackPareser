@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Freelance_WbSellerFeedbackPareser.Models
 {
-    internal class FeedbackModel
+    internal class TotalAppealModel
     {
         [JsonProperty("id")]
         public int Id { get; set; }
