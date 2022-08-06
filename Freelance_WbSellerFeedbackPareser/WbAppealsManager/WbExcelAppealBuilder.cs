@@ -14,6 +14,7 @@
             List<ExcelAppealModel> excelAppeals = new();
             foreach(var totalApeal in _totalAppeals)
             {
+                Thread.Sleep(250);
                 string productId = wbAppealReader.GetProductId(totalApeal.Id);
                 ExcelAppealModel excelAppeal = CreateExcelAppeal(totalApeal, productId);
                 excelAppeals.Add(excelAppeal);

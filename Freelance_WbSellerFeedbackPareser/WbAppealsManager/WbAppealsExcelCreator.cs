@@ -35,13 +35,12 @@ namespace Freelance_WbSellerFeedbackPareser.WbAppealsManager
             {
                 return listName;
             }
-
-            string uniqueName = listName;
             for (int numName = 1; numName < int.MaxValue; numName++)
             {
-                if (!CheckExistsWorksheetName($"{uniqueName}{numName}"))
+                string uniqueName = $"{listName}{numName}";
+                if (!CheckExistsWorksheetName(uniqueName))
                 {
-                    return listName;
+                    return uniqueName;
                 }
             }
             throw new Exception("Error create worksheet name.");
