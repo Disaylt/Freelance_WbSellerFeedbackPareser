@@ -13,9 +13,9 @@ namespace Freelance_WbSellerFeedbackPareser
         private readonly IRequestSender _requestSender;
         private const int _take = 100;
 
-        public WbAppealsReader(SellerSettingsModel sellerSettings)
+        public WbAppealsReader(IRequestSender requestSender)
         {
-            _requestSender = new WbSellerHttpSender(sellerSettings);
+            _requestSender = requestSender;
         }
 
         public List<TotalAppealModel> ReadAllFeedbacks()

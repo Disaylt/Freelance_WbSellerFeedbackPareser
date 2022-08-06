@@ -9,7 +9,8 @@ try
     {
         try
         {
-            WbAppealsReader feedbackReader = new WbAppealsReader(seller);
+            IRequestSender requestSender = new WbSellerHttpSender(seller);
+            WbAppealsReader feedbackReader = new WbAppealsReader(requestSender);
             var feedbacks = feedbackReader.ReadAllFeedbacks();
             excelBuilder.WriteFeedbacksToNewList(seller.SellerName, feedbacks);
         }
